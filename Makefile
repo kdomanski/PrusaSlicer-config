@@ -19,7 +19,7 @@ $(VORON_ORIGINAL):
 .DELETE_ON_ERROR: vendor/Voron.ini
 vendor/Voron.ini: $(VORON_ORIGINAL)
 	cp $< $@
-	./append_opt_in_section.sh '[printer_model:Voron_SW_afterburner]' 'variants' '; volcano 0.4'
+	./append_opt_in_section.sh '[printer_model:Voron_v2_300_afterburner]' 'variants' '; volcano 0.4'
 	./set_opt_in_section.sh '[printer:*common*]' 'start_gcode' $(START_GCODE)
 	./set_opt_in_section.sh '[printer:*common*]' 'end_gcode' $(END_GCODE)
 	./set_opt_in_section.sh '[printer:*common*]' 'layer_gcode' $(LAYER_GCODE)
