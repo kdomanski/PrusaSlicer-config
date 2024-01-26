@@ -25,4 +25,4 @@ find_opt_in_section() {
 }
 
 OPT_LINE="$(find_opt_in_section "$SECTION" "$OPTION")"
-(head -n $((OPT_LINE - 1)) "$FILE"; tail -n +$((OPT_LINE)) "$FILE" | { IFS= read -r line && echo "$line""$VALUE"; cat; }) > "$TMP_FILE" && mv "$TMP_FILE" "$FILE"
+(head -n $((OPT_LINE - 1)) "$FILE"; tail -n +$((OPT_LINE)) "$FILE" | { IFS= read -r line && echo "$line""$VALUE" | tr -d '\r'; cat; }) > "$TMP_FILE" && mv "$TMP_FILE" "$FILE"
