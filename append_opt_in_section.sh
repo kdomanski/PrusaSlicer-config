@@ -5,15 +5,13 @@ set -o pipefail
 
 TMP_FILE="$(mktemp)"
 trap "rm -f $TMP_FILE" EXIT
-FILE='vendor/Voron.ini'
+FILE="${FILE:-"vendor/Voron.ini"}"
 
 SECTION="$1"
 OPTION="$2"
 VALUE="$3"
 
-find_section() {
-    fgrep -n "$1" "$FILE" | cut -d: -f1 | head -n1
-}
+source sections.incl
 
 find_opt_in_section() {
     local SECT_NAME="$1"

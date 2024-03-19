@@ -1,0 +1,8 @@
+# -*- mode: bash -*-
+find_section() {
+    fgrep -n "$1" "$FILE" | cut -d: -f1 | head -n1
+}
+
+has_section() {
+    [ -n "$(find_section "$1")" ]
+}

@@ -6,7 +6,7 @@ START_GCODE := '; M190 S0\n; M109 S0 ; uncomment to remove set&wait temp gcode a
 END_GCODE := 'END_PRINT    ;end script from macro'
 LAYER_GCODE := ';AFTER_LAYER_CHANGE\nSET_PRINT_STATS_INFO CURRENT_LAYER=[layer_num] TOTAL_LAYER=[total_layer_count]'
 
-all: vendor/Voron.ini
+all: vendor/Voron.ini update_prusaslicer_ini
 
 clean:
 	rm -f Voron-original-*.ini vendor/Voron.ini
@@ -30,3 +30,8 @@ vendor/Voron.ini: $(VORON_ORIGINAL)
 	./set_opt_in_section.sh '[filament:*BasicABS*]' 'extrusion_multiplier' '0.95'
 	./set_opt_in_section.sh '[filament:*BasicABS*]' 'temperature' '260'
 	cat kd_addition.ini >> $@
+
+.PHONY: update_prusaslicer_ini
+update_prusaslicer_ini: PrusaSlicer.ini
+	FILE="PrusaSlicer.ini" ./set_opt_in_section.sh '[vendor:Voron]' 'model:Voron_v0_120' '0.4'
+	FILE="PrusaSlicer.ini" ./set_opt_in_section.sh '[vendor:Voron]' 'model:Voron_v2_300_afterburner' '"volcano 0.6";"volcano 0.8"'
