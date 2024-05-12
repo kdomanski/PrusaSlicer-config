@@ -35,4 +35,4 @@ vendor/Voron.ini: $(VORON_ORIGINAL)
 .PHONY: update_prusaslicer_ini
 update_prusaslicer_ini: PrusaSlicer.ini
 	FILE="PrusaSlicer.ini" ./set_opt_in_section.sh '[vendor:Voron]' 'model:Voron_v0_120' '0.4'
-	FILE="PrusaSlicer.ini" ./set_opt_in_section.sh '[vendor:Voron]' 'model:Voron_v2_300_afterburner' '"volcano 0.6";"volcano 0.8"'
+	FILE="PrusaSlicer.ini" ./set_opt_in_section.sh '[vendor:Voron]' 'model:Voron_v2_300_afterburner' '"volcano 0.4";"volcano 0.6";"volcano 0.8"'
