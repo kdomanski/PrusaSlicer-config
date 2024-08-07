@@ -1,5 +1,5 @@
-VORON_PROFILE_VERSION = 1.0.4
-VORON_PROFILE_URL =  https://raw.githubusercontent.com/prusa3d/PrusaSlicer-settings/master/live/Voron/$(VORON_PROFILE_VERSION).ini
+VORON_PROFILE_VERSION = 2.0.0
+VORON_PROFILE_URL =  https://raw.githubusercontent.com/prusa3d/PrusaSlicer-settings-non-prusa-fff/main/Voron/$(VORON_PROFILE_VERSION).ini
 VORON_ORIGINAL = Voron-original-$(VORON_PROFILE_VERSION).ini
 
 START_GCODE := '; M190 S0\n; M109 S0 ; uncomment to remove set&wait temp gcode added automatically after this start gcode\nSTART_PRINT EXTRUDER_TEMP={first_layer_temperature[initial_extruder]} BED_TEMP=[first_layer_bed_temperature] MATERIAL=[filament_type] SIZE={first_layer_print_min[0]}_{first_layer_print_min[1]}_{first_layer_print_max[0]}_{first_layer_print_max[1]}\n\n;PrusaSlicer has no chamber tempterature setting\n;CHAMBER=|chamber_temperature|'
