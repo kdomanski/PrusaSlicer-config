@@ -14,6 +14,7 @@ clean:
 .DELETE_ON_ERROR: $(VORON_ORIGINAL)
 $(VORON_ORIGINAL):
 	curl -L -o $@ $(VORON_PROFILE_URL)
+	sed 's/\r//' -i $@
 
 .PHONY: vendor/Voron.ini
 .DELETE_ON_ERROR: vendor/Voron.ini
