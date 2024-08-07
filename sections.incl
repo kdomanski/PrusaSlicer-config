@@ -1,6 +1,15 @@
 # -*- mode: bash -*-
+
+DEBUG='false'
+
+debug () {
+  [ "$DEBUG" == 'false' ] || builtin echo $@ >&2
+}
+
 find_section() {
-    fgrep -n "$1" "$FILE" | cut -d: -f1 | head -n1
+    line="$(fgrep -n "$1" "$FILE" | cut -d: -f1 | head -n1)"
+    debug "found section \"$1\" at line $line"
+    echo $line
 }
 
 has_section() {

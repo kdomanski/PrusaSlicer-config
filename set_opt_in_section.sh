@@ -41,8 +41,9 @@ EOF
 fi
 
 OPT_LINE="$(find_opt_in_section "$SECTION" "$OPTION")"
+SECT_LINE=$(find_section "$SECTION")
 
-if is_line_empty "$OPT_LINE"; then
+if is_line_empty "$OPT_LINE" || [ $OPT_LINE -lt $SECT_LINE ]; then
     # hopefully jump to the next section
     OPT_LINE=$((OPT_LINE + 2))
     (head -n $((OPT_LINE - 1)) "$FILE"; echo "$OPTION = $VALUE"; tail -n +$((OPT_LINE)) "$FILE") > "$TMP_FILE" && mv "$TMP_FILE" "$FILE"
