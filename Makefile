@@ -11,6 +11,10 @@ all: vendor/Voron.ini update_prusaslicer_ini
 clean:
 	rm -f Voron-original-*.ini vendor/Voron.ini
 
+# implicit rule for templated ini files
+%.ini : %.ini.tmpl
+	gomplate < $< > $@
+
 .DELETE_ON_ERROR: $(VORON_ORIGINAL)
 $(VORON_ORIGINAL):
 	curl -L -o $@ $(VORON_PROFILE_URL)
@@ -18,7 +22,7 @@ $(VORON_ORIGINAL):
 
 .PHONY: vendor/Voron.ini
 .DELETE_ON_ERROR: vendor/Voron.ini
-vendor/Voron.ini: $(VORON_ORIGINAL)
+vendor/Voron.ini: $(VORON_ORIGINAL) kd_addition.ini
 	cp $< $@
 	./append_opt_in_section.sh '[printer_model:Voron_v2_300_afterburner]' 'variants' '; volcano 0.4'
 	./set_opt_in_section.sh '[printer:*common*]' 'start_gcode' $(START_GCODE)
