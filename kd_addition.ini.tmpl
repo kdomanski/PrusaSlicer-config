@@ -29,11 +29,11 @@ ironing = 1
 
 
 {{ range $nozzle := (coll.Slice 0.4 0.6 0.8) -}}
-{{ range $layer :=  (coll.Slice 0.2 0.3) -}}
+{{ range $layer :=  (coll.Slice 0.2 0.3 0.4) -}}
 {{ if gt $layer (mul $nozzle 0.8 ) }}{{continue}}{{end -}}
 [print:Voron Structural {{$layer}}mm {{ $nozzle }}nozzle V2]
 inherits = {{$layer}}mm {{ $nozzle }}nozzle V2
-perimeters = 4
+perimeters = {{ math.Ceil (div 4 (div $nozzle 0.4 )) }}
 fill_density = 40%
 compatible_printers_condition = printer_model=~/.*Voron_v2.*/ and nozzle_diameter[0]=={{ $nozzle }}
 brim_width = 3
