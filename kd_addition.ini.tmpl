@@ -27,19 +27,26 @@ brim_width = 3
 inherits = Voron Structural V0
 ironing = 1
 
-[print:Voron Structural V2]
-inherits = 0.2mm 0.4nozzle V2
+
+{{ range $nozzle := (coll.Slice 0.4 0.6 0.8) -}}
+{{ range $layer :=  (coll.Slice 0.2 0.3) -}}
+{{ if gt $layer (mul $nozzle 0.8 ) }}{{continue}}{{end -}}
+[print:Voron Structural {{$layer}}mm {{ $nozzle }}nozzle V2]
+inherits = {{$layer}}mm {{ $nozzle }}nozzle V2
 perimeters = 4
 fill_density = 40%
-compatible_printers_condition = printer_model=~/.*Voron_v2.*/ and nozzle_diameter[0]==0.4
+compatible_printers_condition = printer_model=~/.*Voron_v2.*/ and nozzle_diameter[0]=={{ $nozzle }}
 brim_width = 3
 
-[print:Voron Structural V2 (with ironing)]
-inherits = Voron Structural V2
+[print:Voron Structural {{$layer}}mm {{ $nozzle }}nozzle V2 (with ironing)]
+inherits = Voron Structural {{$layer}}mm {{ $nozzle }}nozzle V2
 ironing = 1
 
-[print:Voron Structural V2 (fast)]
-inherits = Voron Structural V2; *fast*
+[print:Voron Structural {{$layer}}mm {{ $nozzle }}nozzle V2 (fast)]
+inherits = Voron Structural {{$layer}}mm {{ $nozzle }}nozzle V2; *fast*
+
+{{ end -}}
+{{ end -}}
 
 ##############################
 {{ range (coll.Slice "0.2mm" "0.3mm" "0.4mm") }}
