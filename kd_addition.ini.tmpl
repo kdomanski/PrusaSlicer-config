@@ -1,4 +1,4 @@
-### Added by KD
+### Added by KD # -*- mode: ini -*-
 [print:*fast*]
 external_perimeter_speed = 80
 first_layer_speed = 30
@@ -22,11 +22,10 @@ perimeters = 4
 fill_density = 40%
 compatible_printers_condition = printer_model=~/.*Voron_v0.*/ and nozzle_diameter[0]==0.4
 brim_width = 3
-ironing = 1
 
-[print:Voron Structural V0 (no ironing)]
+[print:Voron Structural V0 (with ironing)]
 inherits = Voron Structural V0
-ironing = 0
+ironing = 1
 
 [print:Voron Structural V2]
 inherits = 0.2mm 0.4nozzle V2
@@ -34,15 +33,13 @@ perimeters = 4
 fill_density = 40%
 compatible_printers_condition = printer_model=~/.*Voron_v2.*/ and nozzle_diameter[0]==0.4
 brim_width = 3
-ironing = 1
 
-[print:Voron Structural V2 (no ironing)]
+[print:Voron Structural V2 (with ironing)]
 inherits = Voron Structural V2
-ironing = 0
+ironing = 1
 
 [print:Voron Structural V2 (fast)]
 inherits = Voron Structural V2; *fast*
-ironing = 0
 
 ##############################
 {{ range (coll.Slice "0.2mm" "0.3mm" "0.4mm") }}
