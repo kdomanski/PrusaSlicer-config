@@ -34,6 +34,8 @@ ironing = 1
 [print:Voron Structural {{$layer}}mm {{ $nozzle }}nozzle V2]
 inherits = {{$layer}}mm {{ $nozzle }}nozzle V2
 perimeters = {{ math.Ceil (div 4 (div $nozzle 0.4 )) }}
+top_solid_layers = {{ math.Ceil (div 5 (div $layer 0.2 )) }}
+bottom_solid_layers = {{ math.Ceil (div 5 (div $layer 0.2 )) }}
 fill_density = 40%
 compatible_printers_condition = printer_model=~/.*Voron_v2.*/ and nozzle_diameter[0]=={{ $nozzle }}
 brim_width = 3
